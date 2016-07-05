@@ -14,23 +14,9 @@
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>tolerances3d.py</string>
-			<key>lastUsed</key>
-			<date>2016-06-29T12:41:38Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
 			<string>quad.py</string>
 			<key>lastUsed</key>
-			<date>2016-06-29T22:25:47Z</date>
-			<key>selected</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>single.py</string>
-			<key>lastUsed</key>
-			<date>2016-06-28T19:04:46Z</date>
+			<date>2016-07-05T13:55:16Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -102,7 +88,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>0</integer>
 				<key>line</key>
 				<integer>181</integer>
 			</dict>
@@ -110,20 +96,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>181</integer>
-		</dict>
-		<key>single.py</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>55</integer>
-				<key>line</key>
-				<integer>44</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>16</integer>
 		</dict>
 		<key>tolerances.py</key>
 		<dict>
@@ -155,26 +127,10 @@
 				<integer>630</integer>
 			</dict>
 		</dict>
-		<key>tolerances3d.py</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>80</integer>
-				<key>line</key>
-				<integer>39</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>23</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>tolerances.py</string>
-		<string>tolerances3d.py</string>
-		<string>single.py</string>
 		<string>quad.py</string>
 		<string>multiplet.py</string>
 		<string>board.py</string>
