@@ -280,14 +280,14 @@ for i in xrange(nstrips/2):
    pstripdn = TLine(xLdn,yPdn,xRdn,yPdn)
    pitched.append(pstripdn)
    # print "yup=%g --> yPup=%g, ydn=%g --> yPdn=%g --> dyup=%g, dydn=%g" % (yup,yPup,ydn,yPdn,(yPup-yup),(ydn-yPdn))
-   ### compare pitch-scaled pattern to nominal one (trivial - all test poitns have the same hight so one is enough...)
+   ### compare pitch-scaled pattern to nominal one
    yNominal = yup
    yActual  = yPup ### assume that the x of the test point is the same as in for the nominal point
    hPitched.Fill(yActual-yNominal)
    RMS["pitchscale"] += (yActual-yNominal)*(yActual-yNominal)
    Npoints["pitchscale"] += 1
    yNominal = ydn
-   yActual  = yPdn ### assume that the x of the test point is the same as in for the nominal point
+   yActual  = yPdn
    hPitched.Fill(yActual-yNominal)
    RMS["pitchscale"] += (yActual-yNominal)*(yActual-yNominal)
    Npoints["pitchscale"] += 1
@@ -317,7 +317,7 @@ for i in xrange(nstrips/2):
    npstripdn = TLine(xLdn,yLdn,xRdn,yRdn)
    nonparallel.append(npstripdn)
    # print "yup=%g --> yRup=%g, ydn=%g --> yRdn=%g --> dyup=%g, dydn=%g" % (yup,yRup,ydn,yRdn,(yRup-yup),(ydn-yRdn))
-   ### compare non-parallel pattern to nominal one - need to loop over the test points
+   ### compare non-parallel pattern to nominal one
    xminstrip = edgex(yup,"left")
    xmaxstrip = edgex(yup,"right")
    dx = (xmaxstrip-xminstrip)/nstriptestpoints
@@ -326,7 +326,6 @@ for i in xrange(nstrips/2):
    for p in xrange(nstriptestpoints):
       yNominal = yup
       x = xminstrip + p*dx
-      # if(x>xmaxstripNP or x>edgex(yup,"right") or x<edgex(yup,"left")): continue
       yActual  = ylinear(x,xLup,yLup,xRup,yRup)
       hNonParallel.Fill(yActual-yNominal)
       RMS["nonparallelism"] += (yActual-yNominal)*(yActual-yNominal)
@@ -344,7 +343,6 @@ for i in xrange(nstrips/2):
    for p in xrange(nstriptestpoints):
       yNominal = ydn
       x = xminstrip + p*dx
-      # if(x>xmaxstripNP or x>edgex(ydn,"right") or x<edgex(ydn,"left")): continue
       yActual  = ylinear(x,xLdn,yLdn,xRdn,yRdn)
       hNonParallel.Fill(yActual-yNominal)
       RMS["nonparallelism"] += (yActual-yNominal)*(yActual-yNominal)
