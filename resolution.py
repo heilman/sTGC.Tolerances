@@ -11,8 +11,8 @@ ROOT.gROOT.SetBatch(1)
 ROOT.gStyle.SetOptFit(ROOT.kTRUE);
 
 '''
-what I usually do to compute the pointing resolution of a segment
-is to make a straight-line fit to (in the sTGC case) 8 points where
+To compute the pointing resolution of a segment:
+make a straight-line fit to (in the sTGC case) 8 points where
 x(1)=ATLAS-Z position of first sTGC plane
 ...
 x(8)=ATLAS-Z position of eighth sTGC plane
