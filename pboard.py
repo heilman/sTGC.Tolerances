@@ -6,7 +6,7 @@ import math
 from array import array
 import copy
 
-class Board:
+class PadBoard:
    'Class for strip board'
 
    def __init__(self,name,z,center=[0,0],color=ROOT.kGreen+2):
@@ -47,10 +47,10 @@ class Board:
       return cmp(self.name, other.name)
    def __copy__(self):
       # print '__copy__()'
-      return Board(self.name)
+      return PadBoard(self.name)
    def __deepcopy__(self, memo):
       # print '__deepcopy__(%s)' % str(memo)
-      return Board(copy.deepcopy(self.name, memo))
+      return PadBoard(copy.deepcopy(self.name, memo))
 
    def edgex(self,y,side):
       ### slope = (y1-y0)/(x1-x0)
