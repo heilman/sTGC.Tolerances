@@ -3,46 +3,40 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>resolution.py</string>
+	<string>quad.py</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
-			<string>tolerances.py</string>
-			<key>lastUsed</key>
-			<date>2016-11-22T09:30:21Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
 			<string>quad.py</string>
 			<key>lastUsed</key>
-			<date>2016-11-22T09:34:13Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>board.py</string>
-			<key>lastUsed</key>
-			<date>2016-11-22T09:04:05Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>layer.py</string>
-			<key>lastUsed</key>
-			<date>2016-11-22T09:23:35Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>multiplet.py</string>
-			<key>lastUsed</key>
-			<date>2017-01-12T17:28:29Z</date>
+			<date>2017-04-18T13:44:19Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>resolution.py</string>
 			<key>lastUsed</key>
-			<date>2017-01-12T17:28:29Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2017-04-18T12:40:11Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>multiplet.py</string>
+			<key>lastUsed</key>
+			<date>2017-04-18T12:41:12Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>layer.py</string>
+			<key>lastUsed</key>
+			<date>2017-04-18T13:44:19Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>board.py</string>
+			<key>lastUsed</key>
+			<date>2017-04-18T12:39:55Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -54,137 +48,90 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>24</integer>
+				<integer>14</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>69</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>1</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>21</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>24</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
 		<key>layer.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>32</integer>
+				<integer>31</integer>
 				<key>line</key>
-				<integer>431</integer>
+				<integer>438</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>95</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>25</integer>
+				<key>line</key>
+				<integer>438</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>31</integer>
+				<key>line</key>
+				<integer>438</integer>
+			</dict>
 		</dict>
 		<key>multiplet.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>38</integer>
 				<key>line</key>
-				<integer>56</integer>
+				<integer>7</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>1</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>11</integer>
-				<key>line</key>
-				<integer>56</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>18</integer>
-				<key>line</key>
-				<integer>56</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
 		<key>quad.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>20</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>41</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>12</integer>
 		</dict>
 		<key>resolution.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>50</integer>
 				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>22</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-		</dict>
-		<key>tolerances.py</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>27</integer>
-				<key>line</key>
-				<integer>10</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>36</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>tolerances.py</string>
 		<string>quad.py</string>
 		<string>multiplet.py</string>
 		<string>board.py</string>
@@ -194,6 +141,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 800}, {1707, 1049}}</string>
+	<string>{{-895, 65}, {659, 709}}</string>
 </dict>
 </plist>

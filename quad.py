@@ -5,42 +5,30 @@ import ROOT
 from ROOT import *
 from multiplet import Multiplet
 import copy
+import random
+import string
 
 ROOT.gROOT.SetBatch(1)
 ROOT.gStyle.SetLineScalePS(0.1)
 
+def rndstr():
+   return ''.join(random.SystemRandom().choice(string.ascii_letters + string.ascii_uppercase + string.digits) for _ in range(10))
+
 ### make the quad
 q0 = Multiplet("q0")
-q1 = copy.deepcopy(q0)
-q2 = copy.deepcopy(q0)
-q3 = copy.deepcopy(q0)
-q4 = copy.deepcopy(q0)
-q5 = copy.deepcopy(q0)
-q6 = copy.deepcopy(q0)
+print ""
+
 
 phi   = 10
 theta = -98
 psi   = 270
 iret  = -1
 
-def drawStrip(strip,color):
-   strip.SetLineColor(color)
-   strip.Draw("same")
-
-def plotQ(q,name):
-   for i in xrange(len(q.zboards)):
-      doption = "same"
-      if(i==0): doption = ""
-      q.boards[i].board.Draw(doption)
-      for s in xrange(len(q.layers[i].strips)):
-         drawStrip(q.layers[i].strips[s],q.layers[i].strips[s].GetLineColor())
-         drawStrip(q.layers[i].tstrips[name][s],ROOT.kGreen)
-
 def getH(q,name):
-   h = q.layers[0].histos[name].Clone()
+   h = q.slayers[0].histos[name].Clone()
    h.Reset()
-   for i in xrange(len(q.zboards)):
-      h.Add(q.layers[i].histos[name])
+   for i in xrange(len(q.zsboards)):
+      h.Add(q.slayers[i].histos[name])
    return h
 
 def plot(q,name,trans,text=[]):
@@ -49,7 +37,8 @@ def plot(q,name,trans,text=[]):
    cname = cname.replace("(","")
    cname = cname.replace(")","")
    cname = cname = cname+"."+trans
-   rootname = cname+".root"
+   # rootname = cname+".root"
+   rootname = cname+".pdf"
    cnv = TCanvas(cname,"",1000,500)
    cnv.Divide(2,1)
    p1 = cnv.cd(1)
@@ -58,17 +47,17 @@ def plot(q,name,trans,text=[]):
    p2.SetPad(0.40, 0.00, 1.00, 1.00)
    p1.cd()
    ROOT.gStyle.SetLineScalePS(0.1)
-   # frame = p1.DrawFrame(0, 0, q.boards[0].dimxtop, q.boards[0].dimy)
+   # frame = p1.DrawFrame(0, 0, q.sboards[0].dimxtop, q.sboards[0].dimy)
    # frame.SetTitle("QS1 Strip board with offset")
    # p1.SetTicks(1,1)
    view = TView.CreateView(1)
-   view.SetRange(0,0,0,q.boards[0].dimxtop,q.boards[0].dimy,100)
-   # view.SetRange(0,0,0,q.boards[0].dimy,q.boards[0].dimy,q.boards[0].dimy)
+   view.SetRange(0,0,0,q.sboards[0].dimxtop,q.sboards[0].dimy,100)
+   # view.SetRange(0,0,0,q.sboards[0].dimy,q.sboards[0].dimy,q.sboards[0].dimy)
    view.SetView(phi,theta,psi,ROOT.Long(iret))
 
    x = TPolyLine3D(3)
    x.SetPoint(0,0,0,0)
-   x.SetPoint(1,q.boards[0].dimxtop*1.2,0,0)
+   x.SetPoint(1,q.sboards[0].dimxtop*1.2,0,0)
    x.SetPoint(2,0,0,0)
    x.SetLineColor(ROOT.kBlack)
    x.Draw("same")
@@ -82,7 +71,7 @@ def plot(q,name,trans,text=[]):
 
    y = TPolyLine3D(3)
    y.SetPoint(0,0,0,0)
-   y.SetPoint(1,0,q.boards[0].dimy*1.1,0)
+   y.SetPoint(1,0,q.sboards[0].dimy*1.1,0)
    y.SetPoint(2,0,0,0)
    y.SetLineColor(ROOT.kBlack)
    y.Draw("same")
@@ -96,7 +85,7 @@ def plot(q,name,trans,text=[]):
 
    z = TPolyLine3D(3)
    z.SetPoint(0,0,0,0)
-   z.SetPoint(1,0,0,q.boards[3].z*1.2)
+   z.SetPoint(1,0,0,q.sboards[3].z*1.2)
    z.SetPoint(2,0,0,0)
    z.SetLineColor(ROOT.kBlack)
    z.Draw("same")
@@ -108,7 +97,22 @@ def plot(q,name,trans,text=[]):
    ztxt.AddText("z")
    ztxt.Draw("same")
 
-   plotQ(q,trans)
+   p1.Update()
+   B = []
+   S = []
+   T = []
+   for i in xrange(len(q.zsboards)):
+      B.append(q.sboards[i].board.Clone(rndstr()))
+      B[i].Draw("same")
+      S.append([])
+      T.append([])
+      for s in xrange(len(q.slayers[i].strips)):
+         S[i].append(q.slayers[i].strips[s].Clone(rndstr()))
+         S[i][s].SetLineColor(S[i][s].GetLineColor())
+         S[i][s].Draw("same")
+         T[i].append(q.slayers[i].tstrips[trans][s].Clone(rndstr()))
+         T[i][s].SetLineColor(ROOT.kGreen)
+         T[i][s].Draw("same")
 
    p1.RedrawAxis()
    p1.Draw()
@@ -137,9 +141,9 @@ def plot(q,name,trans,text=[]):
 # RMSlayer = {}
 # RMSquadr2 = {}
 # RMStotlayer2 = 0
-# for i in xrange(len(q0.zboards)):
-#    for trans,sumd2 in q0.layers[i].RMS.iteritems():
-#       Npoints = q0.layers[i].Npoints[trans]
+# for i in xrange(len(q0.zsboards)):
+#    for trans,sumd2 in q0.slayers[i].RMS.iteritems():
+#       Npoints = q0.slayers[i].Npoints[trans]
 #       rms = math.sqrt(sumd2*1.e6/Npoints) ## converted from mm to um
 #       print "%s: RMS[%i]=%g" % (trans,i,rms)
 #       if(trans=="YZrotationZ" or trans=="Zshift"): rms = zweight*rms
@@ -162,18 +166,18 @@ RMSy = {}
 RMSz = {}
 for trans in transformations:
    if(not (trans=="Zshift" or trans=="YZrotationY" or trans=="YZrotationZ")):
-      for i in xrange(len(q0.zboards)):
-         sumd2   = q0.layers[i].RMS[trans]
-         Npoints = q0.layers[i].Npoints[trans]
+      for i in xrange(len(q0.zsboards)):
+         sumd2   = q0.slayers[i].RMS[trans]
+         Npoints = q0.slayers[i].Npoints[trans]
          # print "%s[%d]: sumd2=%gum^2, Npoints=%g" % (trans,i,sumd2,Npoints)
          if(i==0): RMSy.update({trans:{"sumd2":sumd2,"Npoints":Npoints}})
          else:
             RMSy[trans]["sumd2"]   += sumd2
             RMSy[trans]["Npoints"] += Npoints
    else:
-      for i in xrange(len(q0.zboards)):
-         sumd2   = q0.layers[i].RMS[trans]
-         Npoints = q0.layers[i].Npoints[trans]
+      for i in xrange(len(q0.zsboards)):
+         sumd2   = q0.slayers[i].RMS[trans]
+         Npoints = q0.slayers[i].Npoints[trans]
          # print "%s[%d]: sumd2=%gum^2, Npoints=%g" % (trans,i,sumd2,Npoints)
          if(i==0): RMSz.update({trans:{"sumd2":sumd2,"Npoints":Npoints}})
          else:
@@ -201,15 +205,16 @@ for trans,rms in values.iteritems():
       totRMSz += rms*rms
 totRMSy = math.sqrt(totRMSy)
 totRMSz = math.sqrt(totRMSz)
-totRMS = math.sqrt(totRMSy*totRMSy + (0.5*totRMSz)*(0.5*totRMSz))
+totRMS  = math.sqrt(totRMSy*totRMSy + (0.5*totRMSz)*(0.5*totRMSz))
 
 plot(q0,"quadruplet.pdf(","Zshift",["Shift in Z","10#mum per layer"])
-plot(q1,"quadruplet.pdf", "YZrotationY",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
-plot(q2,"quadruplet.pdf", "Translation",["Offset in Y","30#mum per strip"])
-plot(q3,"quadruplet.pdf", "XYrotation", ["Rotation in XY","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
-plot(q4,"quadruplet.pdf", "Pitchscale", ["Pitch scale in Y","75#mum per layer"])
-plot(q5,"quadruplet.pdf", "Parallelism",["Parallelism in XY","50#mum per layer"])
-plot(q6,"quadruplet.pdf)","Bowing",     ["Bowing in XY","50#mum per layer"])
+plot(q0,"quadruplet.pdf", "YZrotationY",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
+plot(q0,"quadruplet.pdf", "Translation",["Offset in Y","30#mum per strip"])
+plot(q0,"quadruplet.pdf", "XYrotation", ["Rotation in XY","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
+plot(q0,"quadruplet.pdf", "Pitchscale", ["Pitch scale in Y","75#mum per layer"])
+plot(q0,"quadruplet.pdf", "Parallelism",["Parallelism in XY","50#mum per layer"])
+plot(q0,"quadruplet.pdf)","Bowing",     ["Bowing in XY","50#mum per layer"])
+
 
 # print "RMS components per layer:",RMSlayer
 # print "RMS total for per layer :",RMStotlayer
