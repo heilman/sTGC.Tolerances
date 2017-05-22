@@ -17,7 +17,8 @@ scale   = 1.0
 xcenter = dimxtop/2.
 ycenter = dimy/2.
 icenteralstrip = -1
-wstrip  = 2.7
+# wstrip  = 2.7
+# nstrips = 40
 nstrips = 404
 nstriptestpoints = 100
 
@@ -156,25 +157,33 @@ for i in xrange(nstrips):
 
 ### for the offset translation
 offset = 30/1000.
+# offset = 10000/1000.
 
 ### for the rotation
 extendstrips = True
 raxis = [180,100]   ### arbitrary chosen around the bottom left corner of the board 
 theta = math.pi/45000 ### arbitrary chosen pi/500 of rotation
+# theta = math.pi/60 ### arbitrary chosen pi/500 of rotation
 piratio = "45k"
+# piratio = "60"
 pivot = TEllipse(raxis[0],raxis[1],2)
 
 ### for the pitch scaling (+-75um)
 pitch = (75./nstrips)/1000.
+# pitch = (20000/nstrips)/1000.
 spitch = "75#mum"
+# spitch = "20000#mum"
 
 ### for the non-parallelism (+-50um)
 nonparallelism = (50./nstrips)/1000. ### (NP[um]/Nstrips)/um2mm
+# nonparallelism = (30000./nstrips)/1000. ### (NP[um]/Nstrips)/um2mm
 snonparallelism = "50#mum"
+# snonparallelism = "30000#mum"
 
 ### for the bowing (+-50um)
 nxpoints = 500
 bowpar = (50./nstrips)/1000. ### (NP[um]/Nstrips)/um2mm
+# bowpar = (20000./nstrips)/1000. ### (NP[um]/Nstrips)/um2mm
 
 ### add strips to the nominal pattern and the actual (distorted) patterns
 strips      = []
@@ -450,9 +459,10 @@ ptxt.Draw("same")
 p2.RedrawAxis()
 p2.Draw()
 cnv.Update()
-cnv.SaveAs("board.offset.pdf")
-cnv.SaveAs("board.offset.png")
-cnv.SaveAs("board.pdf(")
+cnv.SaveAs("board_offset.pdf")
+cnv.SaveAs("board_offset.png")
+cnv.SaveAs("board_pdf(")
+p1.SaveAs("board_only_offset.pdf")
 
 
 cnv = TCanvas("c","",1000,500)
@@ -510,9 +520,10 @@ ptxt.Draw("same")
 p2.RedrawAxis()
 p2.Draw()
 cnv.Update()
-cnv.SaveAs("board.rotationxy.pdf")
-cnv.SaveAs("board.rotationxy.png")
-cnv.SaveAs("board.pdf")
+cnv.SaveAs("board_rotationxy.pdf")
+cnv.SaveAs("board_rotationxy.png")
+cnv.SaveAs("board_pdf")
+p1.SaveAs("board_only_rotationxy.pdf")
 
 
 cnv = TCanvas("c","",1000,500)
@@ -561,9 +572,11 @@ ptxt.Draw("same")
 p2.RedrawAxis()
 p2.Draw()
 cnv.Update()
-cnv.SaveAs("board.pitchscale.pdf")
-cnv.SaveAs("board.pitchscale.png")
-cnv.SaveAs("board.pdf")
+cnv.SaveAs("board_pitchscale.pdf")
+cnv.SaveAs("board_pitchscale.png")
+cnv.SaveAs("board_pdf")
+p1.SaveAs("board_only_pitchscale.pdf")
+
 
 cnv = TCanvas("c","",1000,500)
 cnv.Divide(2,1)
@@ -613,9 +626,10 @@ ptxt.Draw("same")
 p2.RedrawAxis()
 p2.Draw()
 cnv.Update()
-cnv.SaveAs("board.parapllelism.pdf")
-cnv.SaveAs("board.parapllelism.png")
-cnv.SaveAs("board.pdf")
+cnv.SaveAs("board_parapllelism.pdf")
+cnv.SaveAs("board_parapllelism.png")
+cnv.SaveAs("board_pdf")
+p1.SaveAs("board_only_parapllelism.pdf")
 
 
 cnv = TCanvas("c","",1000,500)
@@ -666,9 +680,10 @@ ptxt.Draw("same")
 p2.RedrawAxis()
 p2.Draw()
 cnv.Update()
-cnv.SaveAs("board.bowing.pdf")
-cnv.SaveAs("board.bowing.png")
-cnv.SaveAs("board.pdf)")
+cnv.SaveAs("board_bowing.pdf")
+cnv.SaveAs("board_bowing.png")
+cnv.SaveAs("board_pdf)")
+p1.SaveAs("board_only_bowing.pdf")
 
 
 

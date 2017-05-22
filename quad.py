@@ -10,6 +10,7 @@ import string
 
 ROOT.gROOT.SetBatch(1)
 ROOT.gStyle.SetLineScalePS(0.1)
+# ROOT.gStyle.SetOptStat(0)
 
 def rndstr():
    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.ascii_uppercase + string.digits) for _ in range(10))
@@ -39,6 +40,8 @@ def plot(q,name,trans,text=[]):
    cname = cname = cname+"."+trans
    # rootname = cname+".root"
    rootname = cname+".pdf"
+   pdfonlyname = cname.replace(".","_")+"_only.pdf"
+   pdfhonlyname = cname.replace(".","_")+"_honly.pdf"
    cnv = TCanvas(cname,"",1000,500)
    cnv.Divide(2,1)
    p1 = cnv.cd(1)
@@ -116,6 +119,8 @@ def plot(q,name,trans,text=[]):
 
    p1.RedrawAxis()
    p1.Draw()
+   p1.SaveAs( pdfonlyname.replace(")","").replace("(","") )
+
    ########
    p2.cd()
    # ROOT.gStyle.SetLineScalePS(1)
@@ -130,6 +135,16 @@ def plot(q,name,trans,text=[]):
    ptxt.SetBorderSize(0)
    for txt in text: ptxt.AddText(txt)
    ptxt.Draw("same")
+   # p2.SaveAs( pdfhonlyname.replace(")","").replace("(","") )
+
+   cnvh = TCanvas(cname+"h","",500,500)
+   h.Draw()
+   ptxt.Draw("same")
+   cnvh.RedrawAxis()
+   cnvh.Update()
+   cnvh.SaveAs( pdfhonlyname.replace(")","").replace("(","") );
+   
+
    cnv.Update()
    cnv.SaveAs(rootname)
    cnv.SaveAs(name)
@@ -184,6 +199,7 @@ for trans in transformations:
             RMSz[trans]["sumd2"]   += sumd2
             RMSz[trans]["Npoints"] += Npoints
 
+print ""
 values = {}
 for trans in transformations:
    if(not (trans=="Zshift" or trans=="YZrotationY" or trans=="YZrotationZ")):
@@ -198,17 +214,27 @@ for trans in transformations:
 totRMSy = 0
 totRMSz = 0
 totRMS  = 0
+totRMSyNoOffset = 0
+totRMSzNoOffset = 0
+totRMSNoOffset  = 0
 for trans,rms in values.iteritems():
    if(not (trans=="Zshift" or trans=="YZrotationY" or trans=="YZrotationZ")):
       totRMSy += rms*rms
+      if(not (trans=="Translation")): totRMSyNoOffset += rms*rms
    else:
       totRMSz += rms*rms
+      if(not (trans=="Translation")): totRMSzNoOffset += rms*rms
 totRMSy = math.sqrt(totRMSy)
 totRMSz = math.sqrt(totRMSz)
 totRMS  = math.sqrt(totRMSy*totRMSy + (0.5*totRMSz)*(0.5*totRMSz))
+totRMSyNoOffset = math.sqrt(totRMSyNoOffset)
+totRMSzNoOffset = math.sqrt(totRMSzNoOffset)
+totRMSNoOffset  = math.sqrt(totRMSyNoOffset*totRMSyNoOffset + (0.5*totRMSzNoOffset)*(0.5*totRMSzNoOffset))
 
-plot(q0,"quadruplet.pdf(","Zshift",["Shift in Z","10#mum per layer"])
-plot(q0,"quadruplet.pdf", "YZrotationY",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
+print ""
+plot(q0,"quadruplet.pdf(","Zshift",["Shift in Z","50#mum per layer"])
+plot(q0,"quadruplet.pdf", "YZrotationZ",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{1.8#times10^{4}}=0.01#circ"])
+plot(q0,"quadruplet.pdf", "YZrotationY",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{1.8#times10^{4}}=0.01#circ"])
 plot(q0,"quadruplet.pdf", "Translation",["Offset in Y","30#mum per strip"])
 plot(q0,"quadruplet.pdf", "XYrotation", ["Rotation in XY","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
 plot(q0,"quadruplet.pdf", "Pitchscale", ["Pitch scale in Y","75#mum per layer"])
@@ -220,8 +246,13 @@ plot(q0,"quadruplet.pdf)","Bowing",     ["Bowing in XY","50#mum per layer"])
 # print "RMS total for per layer :",RMStotlayer
 # print "RMS components per quad :",RMSquadr
 # print "RMS total per quad      :",RMStotquad
-
+print "\n-------------------SUMMARY-----------------------"
 print "per layer:",values
+print "-------------------------------------------------"
 print "totRMSy =",totRMSy
 print "totRMSz =",totRMSz
 print "totRMS  =",totRMS
+print "-------------------------------------------------"
+print "totRMSyNoOffset =",totRMSyNoOffset
+print "totRMSzNoOffset =",totRMSzNoOffset
+print "totRMSNoOffset  =",totRMSNoOffset

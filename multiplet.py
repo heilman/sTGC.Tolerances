@@ -4,35 +4,28 @@ import ROOT
 from ROOT import *
 import math
 from array import array
-from board import StripBoard, PadBoard
-from layer import StripLayer, PadLayer
+from board import StripBoard
+from layer import StripLayer
 import copy
 
 class Multiplet:
    'Class for strip/pad multiplet'
 
-   def __init__(self,name,dzStripLayers=10.97,dzPadLayers=10.97,center=[0,0,0],angles=[0,0]):
+   def __init__(self,name,finflate=1,dzStripLayers=10.97,center=[0,0,0],angles=[0,0]):
       # arguments
       self.name = name
       self.center = center
       self.centerxy = [self.center[0],self.center[1]]
       self.angles = angles
       self.dzStripLayers = dzStripLayers
-      # self.dzPadLayers = dzPadLayers
       self.zsboards = [self.center[2] + 0.*self.dzStripLayers,
                        self.center[2] + 1.*self.dzStripLayers,
                        self.center[2] + 2.*self.dzStripLayers,
                        self.center[2] + 3.*self.dzStripLayers]
-      # self.zpboards = [self.center[2] + 0.*self.dzPadLayers,
-      #                  self.center[2] + 1.*self.dzPadLayers,
-      #                  self.center[2] + 2.*self.dzPadLayers,
-      #                  self.center[2] + 3.*self.dzPadLayers]
       self.sboards = []
-      # self.pboards = []
       self.slayers = []
-      # self.players = []
       self.nslayers = -1
-      # self.nplayers = -1
+      self.finflate = finflate
 
       #################
       ### add all items
@@ -57,15 +50,21 @@ class Multiplet:
       for i in xrange(len(self.zsboards)):
          name = self.name+"."+str(i)
          sboard = StripBoard(name,self.zsboards[i],self.centerxy)
-         print "in multiplet sboard=",sboard.board
          self.sboards.append(sboard)
          self.slayers.append(StripLayer(name,self.sboards[i]))
-         self.slayers[i].transform(name+".strip")
-      # for i in xrange(len(self.zpboards)):
-      #    name = self.name+"."+str(i)
-      #    self.pboards.append(PadBoard(name,self.zpboards[i],self.centerxy))
-      #    self.players.append(PadLayer(name,self.pboards[i]))
-      #    self.players[i].transform(name+".pad")
+         ### call all transformations
+         # Defaults: transform(transname,color=ROOT.kRed-2,offset=30.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=50.,zshift=50.,thetayz=math.pi/4500.,bowpar=50.)
+         self.slayers[i].transform(
+                                    name+".strip", 
+                                    ROOT.kRed-2,
+                                    30.*self.finflate,            ## offset
+                                    [180.,100.],                  ## raxis(xy)
+                                    math.pi/45000.*self.finflate, ## theta(xy)
+                                    75.*self.finflate,            ## pitchum
+                                    50.*self.finflate,            ## nonparallelismum
+                                    50.*self.finflate,            ## zshift
+                                    math.pi/18000.*self.finflate, ## theta(yz)
+                                    50.*self.finflate             ## bowpar
+                                  )
       ### layers counter
       self.nslayers = len(self.slayers)
-      # self.nplayers = len(self.players)
