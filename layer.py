@@ -35,7 +35,7 @@ class StripLayer:
       self.tstrips = {"Translation":[],"XYrotation":[],"Pitchscale":[],"Parallelism":[],"Bowing":[],"Zshift":[],"YZrotationY":[],"YZrotationZ":[]}
       self.Npoints = {"Translation":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
       self.RMS     = {"Translation":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
-      self.histos  = {"Translation": TH1D(self.name+"_Strip_Translation", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+      self.histos  = {"Translation": TH1D(self.name+"_Strip_Translation", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.2,+0.2),
                       "XYrotation":  TH1D(self.name+"_Strip_XYrotation",  ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
                       "Pitchscale":  TH1D(self.name+"_Strip_Pitchscale",  ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
                       "Parallelism": TH1D(self.name+"_Strip_Parallelism", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
@@ -205,8 +205,7 @@ class StripLayer:
       return (xL,xR,yS,zS)
 
 
-   def transform(self,transname,color=ROOT.kRed-2,offset=30.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=50.,zshift=50.,thetayz=math.pi/18000.,bowpar=50.):
-   # def transform(self,transname,color=ROOT.kRed-2,offset=10000.,raxis=[180.,100.],thetaxy=math.pi/60.,pitchum=20000.,nonparallelismum=30000.,zshift=2000.,thetayz=math.pi/800.,bowpar=20000.):
+   def transform(self,transname,color=ROOT.kRed-2,offset=75.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=75.,zshift=50.,thetayz=math.pi/18000.,bowpar=75.):
       print "Transforming "+transname
 	
       ### for the offset translation

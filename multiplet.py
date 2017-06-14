@@ -53,18 +53,53 @@ class Multiplet:
          self.sboards.append(sboard)
          self.slayers.append(StripLayer(name,self.sboards[i]))
          ### call all transformations
-         # Defaults: transform(transname,color=ROOT.kRed-2,offset=30.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=50.,zshift=50.,thetayz=math.pi/4500.,bowpar=50.)
-         self.slayers[i].transform(
+         self.slayers[i].transform( ### OPTION A
                                     name+".strip", 
                                     ROOT.kRed-2,
-                                    30.*self.finflate,            ## offset
+                                    75.*self.finflate,            ## offset
                                     [180.,100.],                  ## raxis(xy)
                                     math.pi/45000.*self.finflate, ## theta(xy)
                                     75.*self.finflate,            ## pitchum
-                                    50.*self.finflate,            ## nonparallelismum
+                                    75.*self.finflate,            ## nonparallelismum
                                     50.*self.finflate,            ## zshift
                                     math.pi/18000.*self.finflate, ## theta(yz)
-                                    50.*self.finflate             ## bowpar
+                                    75.*self.finflate             ## bowpar
                                   )
+         # self.slayers[i].transform( ### OPTION B
+         #                            name+".strip", 
+         #                            ROOT.kRed-2,
+         #                            150.*self.finflate,            ## offset
+         #                            [180.,100.],                  ## raxis(xy)
+         #                            math.pi/45000.*self.finflate, ## theta(xy)
+         #                            75.*self.finflate,            ## pitchum
+         #                            75.*self.finflate,            ## nonparallelismum
+         #                            50.*self.finflate,            ## zshift
+         #                            math.pi/18000.*self.finflate, ## theta(yz)
+         #                            75.*self.finflate             ## bowpar
+         #                          )
+         # self.slayers[i].transform( ### OPTION C
+         #                            name+".strip", 
+         #                            ROOT.kRed-2,
+         #                            75.*self.finflate,            ## offset
+         #                            [180.,100.],                  ## raxis(xy)
+         #                            math.pi/45000.*self.finflate, ## theta(xy)
+         #                            150.*self.finflate,            ## pitchum
+         #                            150.*self.finflate,            ## nonparallelismum
+         #                            50.*self.finflate,            ## zshift
+         #                            math.pi/18000.*self.finflate, ## theta(yz)
+         #                            150.*self.finflate             ## bowpar
+         #                          )
+         # self.slayers[i].transform( ### OPTION D
+         #                            name+".strip", 
+         #                            ROOT.kRed-2,
+         #                            75.*self.finflate,            ## offset
+         #                            [180.,100.],                  ## raxis(xy)
+         #                            math.pi/22500.*self.finflate, ## theta(xy)
+         #                            75.*self.finflate,            ## pitchum
+         #                            75.*self.finflate,            ## nonparallelismum
+         #                            50.*self.finflate,            ## zshift
+         #                            math.pi/18000.*self.finflate, ## theta(yz)
+         #                            75.*self.finflate             ## bowpar
+         #                          )
       ### layers counter
       self.nslayers = len(self.slayers)

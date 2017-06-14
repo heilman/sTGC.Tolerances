@@ -3,40 +3,40 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>resolution.py</string>
+	<string>quad.py</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>resolution.py</string>
 			<key>lastUsed</key>
-			<date>2017-05-18T14:31:03Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2017-06-14T07:31:39Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>tolerances.py</string>
 			<key>lastUsed</key>
-			<date>2017-05-18T14:31:03Z</date>
+			<date>2017-06-14T07:31:40Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>quad.py</string>
 			<key>lastUsed</key>
-			<date>2017-05-18T14:31:02Z</date>
+			<date>2017-06-14T07:34:57Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>multiplet.py</string>
 			<key>lastUsed</key>
-			<date>2017-05-18T14:23:10Z</date>
+			<date>2017-06-14T07:34:57Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>layer.py</string>
 			<key>lastUsed</key>
-			<date>2017-05-18T14:27:46Z</date>
+			<date>2017-06-14T07:32:14Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -68,53 +68,37 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>30</integer>
+				<integer>100</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>207</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>16</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>23</integer>
-				<key>line</key>
-				<integer>43</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>34</integer>
-				<key>line</key>
-				<integer>43</integer>
-			</dict>
+			<integer>4</integer>
 		</dict>
 		<key>multiplet.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>66</integer>
+				<integer>51</integer>
 				<key>line</key>
-				<integer>65</integer>
+				<integer>96</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>32</integer>
+			<integer>67</integer>
 		</dict>
 		<key>quad.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>101</integer>
+				<integer>109</integer>
 				<key>line</key>
-				<integer>236</integer>
+				<integer>238</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -128,7 +112,7 @@
 				<key>column</key>
 				<integer>13</integer>
 				<key>line</key>
-				<integer>41</integer>
+				<integer>39</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>

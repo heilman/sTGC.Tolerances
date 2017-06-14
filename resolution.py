@@ -37,7 +37,7 @@ zConfirm = [6993.5+dz, 7004.5-dz, 7015.5+dz, 7026.5-dz] # [mm]
 zPivot   = [7327.5+dz, 7338.5-dz, 7349.5+dz, 7360.5-dz] # [mm]
 z    = zConfirm+zPivot
 y    = [0] * len(z)
-yRes = [0.043] * len(z) # the non conformities in y [mm]
+yRes = [0.083] * len(z) # the non conformities in y [mm]
 # zRes = [0.028] * len(z) # the non conformities in z [mm]
 zRes = [0.082] * len(z) # the non conformities in z [mm]
 
