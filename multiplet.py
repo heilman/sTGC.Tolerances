@@ -57,6 +57,7 @@ class Multiplet:
                                     name+".strip", 
                                     ROOT.kRed-2,
                                     75.*self.finflate,            ## offset
+                                    25.*self.finflate,            ## offset correction 
                                     [180.,100.],                  ## raxis(xy)
                                     math.pi/45000.*self.finflate, ## theta(xy)
                                     75.*self.finflate,            ## pitchum
@@ -69,6 +70,7 @@ class Multiplet:
          #                            name+".strip", 
          #                            ROOT.kRed-2,
          #                            150.*self.finflate,            ## offset
+         #                            25.*self.finflate,            ## offset correction 
          #                            [180.,100.],                  ## raxis(xy)
          #                            math.pi/45000.*self.finflate, ## theta(xy)
          #                            75.*self.finflate,            ## pitchum
@@ -81,6 +83,7 @@ class Multiplet:
          #                            name+".strip", 
          #                            ROOT.kRed-2,
          #                            75.*self.finflate,            ## offset
+         #                            25.*self.finflate,            ## offset correction 
          #                            [180.,100.],                  ## raxis(xy)
          #                            math.pi/45000.*self.finflate, ## theta(xy)
          #                            150.*self.finflate,            ## pitchum
@@ -93,6 +96,7 @@ class Multiplet:
          #                            name+".strip", 
          #                            ROOT.kRed-2,
          #                            75.*self.finflate,            ## offset
+         #                            25.*self.finflate,            ## offset correction 
          #                            [180.,100.],                  ## raxis(xy)
          #                            math.pi/22500.*self.finflate, ## theta(xy)
          #                            75.*self.finflate,            ## pitchum

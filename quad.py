@@ -176,7 +176,7 @@ def plot(q,name,trans,text=[]):
 #    RMSquadr.update({trans:math.sqrt(sumrms2)})
 # RMStotquad = math.sqrt(RMStotquad2)
 
-transformations = ["Translation", "XYrotation", "Pitchscale", "Parallelism", "Bowing", "Zshift", "YZrotationY", "YZrotationZ"]
+transformations = ["Translation", "TranslationCorr", "XYrotation", "Pitchscale", "Parallelism", "Bowing", "Zshift", "YZrotationY", "YZrotationZ"]
 RMSy = {}
 RMSz = {}
 for trans in transformations:
@@ -219,11 +219,11 @@ totRMSzNoOffset = 0
 totRMSNoOffset  = 0
 for trans,rms in values.iteritems():
    if(not (trans=="Zshift" or trans=="YZrotationY" or trans=="YZrotationZ")):
-      totRMSy += rms*rms
-      if(not (trans=="Translation")): totRMSyNoOffset += rms*rms
+      if(not (trans=="TranslationCorr")): totRMSy += rms*rms
+      if(not (trans=="Translation")):     totRMSyNoOffset += rms*rms
    else:
-      totRMSz += rms*rms
-      if(not (trans=="Translation")): totRMSzNoOffset += rms*rms
+      if(not (trans=="TranslationCorr")): totRMSz += rms*rms
+      if(not (trans=="Translation")):     totRMSzNoOffset += rms*rms
 totRMSy = math.sqrt(totRMSy)
 totRMSz = math.sqrt(totRMSz)
 totRMS  = math.sqrt(totRMSy*totRMSy + (0.5*totRMSz)*(0.5*totRMSz))
@@ -235,11 +235,12 @@ print ""
 plot(q0,"quadruplet.pdf(","Zshift",["Shift in Z","50#mum per layer"])
 plot(q0,"quadruplet.pdf", "YZrotationZ",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{1.8#times10^{4}}=0.01#circ"])
 plot(q0,"quadruplet.pdf", "YZrotationY",["Rotation in YZ","#it{#theta}=#frac{#it{#pi}}{1.8#times10^{4}}=0.01#circ"])
-plot(q0,"quadruplet.pdf", "Translation",["Offset in Y","30#mum per strip"])
+plot(q0,"quadruplet.pdf", "Translation",["Offset in Y","75#mum per strip"])
+plot(q0,"quadruplet.pdf", "TranslationCorr",["Offset correction in Y","Gaus(0,25#mum) per strip"])
 plot(q0,"quadruplet.pdf", "XYrotation", ["Rotation in XY","#it{#theta}=#frac{#it{#pi}}{4.5#times10^{4}}=0.004#circ"])
 plot(q0,"quadruplet.pdf", "Pitchscale", ["Pitch scale in Y","75#mum per layer"])
-plot(q0,"quadruplet.pdf", "Parallelism",["Parallelism in XY","50#mum per layer"])
-plot(q0,"quadruplet.pdf)","Bowing",     ["Bowing in XY","50#mum per layer"])
+plot(q0,"quadruplet.pdf", "Parallelism",["Parallelism in XY","75#mum per layer"])
+plot(q0,"quadruplet.pdf)","Bowing",     ["Bowing in XY","75#mum per layer"])
 
 
 # print "RMS components per layer:",RMSlayer

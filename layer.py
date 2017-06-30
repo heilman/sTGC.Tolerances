@@ -32,17 +32,20 @@ class StripLayer:
       self.dy = (self.ystripmax-self.ystripmin)/self.nstrips
 
       ### for the transformations
-      self.tstrips = {"Translation":[],"XYrotation":[],"Pitchscale":[],"Parallelism":[],"Bowing":[],"Zshift":[],"YZrotationY":[],"YZrotationZ":[]}
-      self.Npoints = {"Translation":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
-      self.RMS     = {"Translation":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
-      self.histos  = {"Translation": TH1D(self.name+"_Strip_Translation", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.2,+0.2),
-                      "XYrotation":  TH1D(self.name+"_Strip_XYrotation",  ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "Pitchscale":  TH1D(self.name+"_Strip_Pitchscale",  ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "Parallelism": TH1D(self.name+"_Strip_Parallelism", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "Bowing":      TH1D(self.name+"_Strip_Bowing",      ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "Zshift":      TH1D(self.name+"_Strip_Zshift",      ";z_{actual}-z_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "YZrotationY": TH1D(self.name+"_Strip_YZrotationY", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
-                      "YZrotationZ": TH1D(self.name+"_Strip_YZrotationZ", ";z_{actual}-z_{nominal} [mm];Number of test points",50,-0.2,+0.2)}
+      self.tstrips = {"Translation":[],"TranslationCorr":[],"XYrotation":[],"Pitchscale":[],"Parallelism":[],"Bowing":[],"Zshift":[],"YZrotationY":[],"YZrotationZ":[]}
+      self.Npoints = {"Translation":0, "TranslationCorr":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
+      self.RMS     = {"Translation":0, "TranslationCorr":0, "XYrotation":0, "Pitchscale":0, "Parallelism":0,"Bowing":0, "Zshift":0, "YZrotationY":0, "YZrotationZ":0}
+      self.histos  = {"Translation":     TH1D(self.name+"_Strip_Translation",     ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.2,+0.2),
+                      "TranslationCorr": TH1D(self.name+"_Strip_TranslationCorr", ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.2,+0.2),
+                      "XYrotation":      TH1D(self.name+"_Strip_XYrotation",      ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "Pitchscale":      TH1D(self.name+"_Strip_Pitchscale",      ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "Parallelism":     TH1D(self.name+"_Strip_Parallelism",     ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "Bowing":          TH1D(self.name+"_Strip_Bowing",          ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "Zshift":          TH1D(self.name+"_Strip_Zshift",          ";z_{actual}-z_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "YZrotationY":     TH1D(self.name+"_Strip_YZrotationY",     ";y_{actual}-y_{nominal} [mm];Number of test points",50,-0.1,+0.1),
+                      "YZrotationZ":     TH1D(self.name+"_Strip_YZrotationZ",     ";z_{actual}-z_{nominal} [mm];Number of test points",50,-0.2,+0.2)}
+      self.offsetcorr = -1
+      self.rand3 = TRandom3()
       self.offset = -1
       self.extendstrips = True
       self.raxis = [-1,-1]
@@ -140,6 +143,12 @@ class StripLayer:
       xR = self.board.edgex(y,"right")
       return (xL,xR,y)
 
+   def translationcorr(self,y):
+      y += self.rand3.Gaus(0,self.offsetcorr)
+      xL = self.board.edgex(y,"left")
+      xR = self.board.edgex(y,"right")
+      return (xL,xR,y)
+
    def xyrotattion(self,y,side):
       x = self.board.edgex(y,side)-self.raxis[0]
       y = y-self.raxis[1]
@@ -205,11 +214,12 @@ class StripLayer:
       return (xL,xR,yS,zS)
 
 
-   def transform(self,transname,color=ROOT.kRed-2,offset=75.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=75.,zshift=50.,thetayz=math.pi/18000.,bowpar=75.):
+   def transform(self,transname,color=ROOT.kRed-2,offset=75.,offsetcorr=25.,raxis=[180.,100.],thetaxy=math.pi/45000.,pitchum=75.,nonparallelismum=75.,zshift=50.,thetayz=math.pi/18000.,bowpar=75.):
       print "Transforming "+transname
 	
-      ### for the offset translation
+      ### for the offset translation and its correction uncertianty
       self.offset = offset/1000.
+      self.offsetcorr = offsetcorr/1000.
 
       ### for the rotation
       self.extendstrips = True
@@ -264,6 +274,33 @@ class StripLayer:
          self.histos["Translation"].Fill(delta)
          self.RMS["Translation"] += delta*delta
          self.Npoints["Translation"] += 1
+         ###################
+         ### propogate y...
+         y += self.dy
+      bar.finish()
+
+      bar = progressbar.ProgressBar(maxval=self.nstrips,widgets=[progressbar.Bar('=', 'TranslationCorr [', ']'), ' ', progressbar.Percentage()])
+      bar.start()
+      y = self.ystripmin
+      for i in xrange(self.nstrips):
+         bar.update(i+1)
+         sleep(0.001)
+         ### CORRECTION translated pattern
+         tcoord = self.translationcorr(y)
+         xL = tcoord[0]
+         xR = tcoord[1]
+         yT = tcoord[2]
+         strip = TPolyLine3D(3)
+         strip.SetPoint(0,xL,yT,self.board.z)
+         strip.SetPoint(1,xR,yT,self.board.z)
+         self.tstrips["TranslationCorr"].append(strip)
+         ### compare translated CORRECTION pattern to nominal one
+         yNominal = y
+         yActual  = yT ### assume that the x of the test point is the same as in for the nominal point
+         delta = yActual-yNominal
+         self.histos["TranslationCorr"].Fill(delta)
+         self.RMS["TranslationCorr"] += delta*delta
+         self.Npoints["TranslationCorr"] += 1
          ###################
          ### propogate y...
          y += self.dy

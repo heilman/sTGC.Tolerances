@@ -3,40 +3,40 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>quad.py</string>
+	<string>resolution.py</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>resolution.py</string>
 			<key>lastUsed</key>
-			<date>2017-06-14T07:31:39Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>tolerances.py</string>
-			<key>lastUsed</key>
-			<date>2017-06-14T07:31:40Z</date>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>quad.py</string>
-			<key>lastUsed</key>
-			<date>2017-06-14T07:34:57Z</date>
+			<date>2017-06-30T14:48:03Z</date>
 			<key>selected</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>tolerances.py</string>
+			<key>lastUsed</key>
+			<date>2017-06-30T14:48:03Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>quad.py</string>
+			<key>lastUsed</key>
+			<date>2017-06-30T14:36:49Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>multiplet.py</string>
 			<key>lastUsed</key>
-			<date>2017-06-14T07:34:57Z</date>
+			<date>2017-06-30T14:37:10Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>layer.py</string>
 			<key>lastUsed</key>
-			<date>2017-06-14T07:32:14Z</date>
+			<date>2017-06-30T14:48:02Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -68,56 +68,56 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>100</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>207</integer>
+				<integer>47</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>4</integer>
+			<integer>23</integer>
 		</dict>
 		<key>multiplet.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>51</integer>
+				<integer>89</integer>
 				<key>line</key>
-				<integer>96</integer>
+				<integer>98</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>67</integer>
+			<integer>0</integer>
 		</dict>
 		<key>quad.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>109</integer>
+				<integer>42</integer>
 				<key>line</key>
-				<integer>238</integer>
+				<integer>225</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>220</integer>
+			<integer>222</integer>
 		</dict>
 		<key>resolution.py</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>13</integer>
+				<integer>56</integer>
 				<key>line</key>
-				<integer>39</integer>
+				<integer>45</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>27</integer>
+			<integer>26</integer>
 		</dict>
 		<key>tolerances.py</key>
 		<dict>
@@ -146,6 +146,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{1, 68}, {1067, 709}}</string>
+	<string>{{-1266, 66}, {1067, 709}}</string>
 </dict>
 </plist>
